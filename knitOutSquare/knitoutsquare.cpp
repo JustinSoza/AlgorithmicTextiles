@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-std::ofstream file {"knitoutText.txt"};
+std::ofstream file {"output.txt"};
 
 void init(int wid)
 {
@@ -45,43 +45,37 @@ void init(int wid)
 
 void knit(int wid, int len)
 {
-    bool backward = true;
     for(int j=0;j<len;++j)
     {
-        if (backward)
+
+        for(int i=wid;i>0;--i)
         {
-            for(int i=wid;i>0;--i)
+            file << "knit - ";
+            if (i%2 == 0)
             {
-                file << "knit - ";
-                if (i%2 == 0)
-                {
-                    file << "b" << i << " " << wid << "\n"; 
-                }
-                if (i%2 != 0)
-                {
-                    file << "f" << i << " " << wid << "\n"; 
-                }
+                file << "b" << i << " " << wid << "\n"; 
             }
-            file<<"\n";
-            backward = false;
+            if (i%2 != 0)
+            {
+                file << "f" << i << " " << wid << "\n"; 
+            }
         }
-        else
+        file<<"\n";
+
+
+        for(int i=1;i<=wid;++i)
         {
-            for(int i=1;i<=wid;++i)
+            file << "knit + ";
+            if (i%2 == 0)
             {
-                file << "knit + ";
-                if (i%2 == 0)
-                {
-                    file << "b" << i << " " << wid << "\n"; 
-                }
-                if (i%2 != 0)
-                {
-                    file << "f" << i << " " << wid << "\n"; 
-                }
+                file << "b" << i << " " << wid << "\n"; 
             }
-            file<<"\n";
-            backward = true;
+            if (i%2 != 0)
+            {
+                file << "f" << i << " " << wid << "\n"; 
+            }
         }
+        file<<"\n";
     }
 }
 
