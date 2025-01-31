@@ -1,7 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include<windows.h>
 
-std::ofstream file {"output.txt"};
+std::string fileName = "output.txt";
+std::ofstream file {fileName};
 
 void init(int wid)
 {
@@ -100,12 +103,15 @@ int main()
 {
     int width;
     int passes;
+
     std::cout << "Enter Width: ";
     std::cin >> width;
     std::cout << "Enter Length: ";
     std::cin >> passes;
+
     init(width);
     knit(width, passes);
     clear(width);
+    std::cout << "\nKnitout file created to " << fileName;
     return 0;
 }

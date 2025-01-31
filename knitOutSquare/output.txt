@@ -3,700 +3,122 @@
 
 ; bottom row
 
-inhook 10
+inhook 4
 
-tuck + f1 10
-tuck + f3 10
-tuck + f5 10
-tuck + f7 10
-tuck + f9 10
-tuck - b10 10
-tuck - b8 10
-tuck - b6 10
-tuck - b4 10
-tuck - b2 10
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+tuck + f1 4
+tuck + f3 4
+tuck - b4 4
+tuck - b2 4
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-releasehook 10
+releasehook 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
+knit - b4 4
+knit - f3 4
+knit - b2 4
+knit - f1 4
 
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
+knit + f1 4
+knit + b2 4
+knit + f3 4
+knit + b4 4
 
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-knit - b10 10
-knit - f9 10
-knit - b8 10
-knit - f7 10
-knit - b6 10
-knit - f5 10
-knit - b4 10
-knit - f3 10
-knit - b2 10
-knit - f1 10
-
-knit + f1 10
-knit + b2 10
-knit + f3 10
-knit + b4 10
-knit + f5 10
-knit + b6 10
-knit + f7 10
-knit + b8 10
-knit + f9 10
-knit + b10 10
-
-outhook 10
+outhook 4
 
 drop f1
 drop b2
 drop f3
 drop b4
-drop f5
-drop b6
-drop f7
-drop b8
-drop f9
-drop b10
