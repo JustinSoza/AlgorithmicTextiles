@@ -1,0 +1,262 @@
+;!knitout-2
+;;Carriers: 1 2 3 4 5 6 7 8 9 10
+
+; bottom row
+
+inhook 10
+
+tuck + f1 10
+tuck + f3 10
+tuck + f5 10
+tuck + f7 10
+tuck + f9 10
+tuck - b10 10
+tuck - b8 10
+tuck - b6 10
+tuck - b4 10
+tuck - b2 10
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+releasehook 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+knit - b10 10
+knit - f9 10
+knit - b8 10
+knit - f7 10
+knit - b6 10
+knit - f5 10
+knit - b4 10
+knit - f3 10
+knit - b2 10
+knit - f1 10
+
+knit + f1 10
+knit + b2 10
+knit + f3 10
+knit + b4 10
+knit + f5 10
+knit + b6 10
+knit + f7 10
+knit + b8 10
+knit + f9 10
+knit + b10 10
+
+outhook 10
+
+drop f1
+drop b2
+drop f3
+drop b4
+drop f5
+drop b6
+drop f7
+drop b8
+drop f9
+drop b10
