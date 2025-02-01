@@ -1,13 +1,16 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "fssimplewindow.h"
 #include "yspng.h"
 #include "yspngenc.h"
 
-const int carrierA = 1;
-const int carrierB = 2;
-const int bmpWidth;
+
+const int carrierA = 3;
+const int carrierB = 6;
+
 std::string fileName = "output.txt";
+std::ofstream file {fileName};
 
 // Initialize highlight color (BLACK PIXELS)
 void init1(int wid, int carrier)
@@ -63,7 +66,7 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
 {
     bool black = true;
 
-    for (int i = 0; i < png.hei; ++i)
+    for (int i = 0; i < img.hei; ++i)
 	{
         // For debugging
         std::cout << "\n";
@@ -79,7 +82,7 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
             {
                 file << "knit + f" << j+1 << " " << A << "\n";
             }
-            else if (not black && bit > 100) //knit white pixels B
+            else if (!black && bit > 100) //knit white pixels B
             {
                 file << "knit + f" << j+1 << " " << B << "\n";
             }
@@ -104,7 +107,7 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
             {
                 file << "xfer f" << j+1 << " b" << j+1 << "\n";
             }
-            else if (not black && bit > 100) //knit white pixels B
+            else if (!black && bit > 100) //knit white pixels B
             {
                 file << "xfer f" << j+1 << " b" << j+1 << "\n";
             }
@@ -122,13 +125,13 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
             {
                 file << "knit - b" << j+1 << " " << A << "\n";
             }
-            else if (not black && bit > 100) //knit white pixels B
+            else if (!black && bit > 100) //knit white pixels B
             {
                 file << "knit - b" << j+1 << " " << B << "\n";
             }
-            else if  (black && j == width-1) // miss if not
+            else if  (black && j == 0) // miss if not
             {
-                file << "miss - b" << width << " " << A << "\n";
+                file << "miss - b" << 1 << " " << A << "\n";
             }
         }
 
@@ -143,13 +146,13 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
             {
                 file << "xfer b" << j+1 << " f" << j+1 << "\n";
             }
-            else if (not black && bit > 100) //knit white pixels B
+            else if (!black && bit > 100) //knit white pixels B
             {
                 file << "xfer b" << j+1 << " f" << j+1 << "\n";
             }
         }
 
-        black = not black;
+        black = !black;
         // for(pixel in row)
         // knit black pixel carrier A
         // miss width
@@ -183,19 +186,19 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
 
 void clear(int width, int A, int B)
 {
-    for(int i=1; i<=wid; ++i) // Finish A
+    for(int i=1; i<=width; ++i) // Finish A
     {
         file << "knit + f" << i << " " << A << "\n";
     }
     file << "outhook " << A << "\n";
 
-    for(int i=1; i<=wid; ++i) // Finish B
+    for(int i=1; i<=width; ++i) // Finish B
     {
         file << "knit + f" << i << " " << B << "\n";
     }
     file << "outhook " << B << "\n";
 
-    for(int i=1; i<=wid; ++i) // Clear hooks
+    for(int i=1; i<=width; ++i) // Clear hooks
     {
         file << "drop f" << i << "\n";
     }
@@ -203,15 +206,13 @@ void clear(int width, int A, int B)
 
 int main()
 {
-    std::ofstream file {fileName};
-
     FsChangeToProgramDir();
     YsRawPngDecoder png;
 
     char imagename[200];
     std::cout << "Enter bitmap file name: ";
 	std::cin >> imagename;
-	std::cout << imagename << "\n";
+	std::cout << "Loading " << imagename << "...\n";
 	if (YSOK == png.Decode(imagename))
 	{
 		printf("Wid %d Hei %d\n", png.wid, png.hei);
@@ -224,11 +225,12 @@ int main()
 
     int width = png.wid;
     int length = png.hei;
+    png.Flip();
 
     init1(width, carrierA);
     init2(width, carrierB);
     knitFromBitmap(width, carrierA, carrierB, png);
     clear(width, carrierA, carrierB);
 
-    std::cout << "Knitout saved to " << fileName;
+    std::cout << "\n\nKnitout saved to " << fileName;
 }
