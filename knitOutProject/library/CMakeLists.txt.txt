@@ -1,0 +1,2 @@
+add_library(library fssimplewindow.h yspng.h yspngenc.h)
+target_include_directories(library PUBLIC .)
