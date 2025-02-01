@@ -6,8 +6,8 @@
 #include "yspngenc.h"
 
 
-const int carrierA = 3;
-const int carrierB = 6;
+const int carrierA = 1;
+const int carrierB = 2;
 
 std::string fileName = "output.txt";
 std::ofstream file {fileName};
@@ -18,7 +18,7 @@ void init1(int wid, int carrier)
     file << ";!knitout-2\n";
     file << ";;Carriers: 1 2 3 4 5 6 7 8 9 10\n\n";
     file << "; bottom row\n\n";
-    file << "inhook " << carrier << "\n\n";
+    file << "inhook " << carrier << "; Initialize carrier A" << "\n\n";
     
     for(int i=wid; i>0; --i) // Tuck left
     {
@@ -40,11 +40,14 @@ void init1(int wid, int carrier)
     {
         file << "knit - f" << i << " " << carrier << "\n";
     }
+
+    file << "\n";
 }
 
 // Initialize background color (WHITE PIXELS)
 void init2(int wid, int carrier)
 {
+    file << "inhook " << carrier << "; Initialize carrier B" << "\n\n";
     for(int i=wid; i>0; --i) // Knit left row
     {
         file << "knit - f" << i << " " << carrier << "\n";
@@ -59,6 +62,7 @@ void init2(int wid, int carrier)
     {
         file << "knit - f" << i << " " << carrier << "\n";
     }
+    file << "\n";
 }
 
 // Creates pattern from binary map
