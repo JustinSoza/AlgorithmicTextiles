@@ -1,0 +1,30 @@
+;!knitout-2
+;;Carriers: 1 2 3 4 5 6 7 8 9 10
+
+; bottom row
+
+inhook 10
+
+tuck + f1 1
+tuck + f3 1
+tuck + f5 1
+tuck + f7 1
+tuck + f9 1
+tuck - b10 1
+tuck - b8 1
+tuck - b6 1
+tuck - b4 1
+tuck - b2 1
+knit + f1 1
+knit + b2 1
+knit + f3 1
+knit + b4 1
+knit + f5 1
+knit + b6 1
+knit + f7 1
+knit + b8 1
+knit + f9 1
+knit + b10 1
+
+releasehook 1
+

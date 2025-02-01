@@ -1,0 +1,234 @@
+#include <iostream>
+#include <fstream>
+#include "fssimplewindow.h"
+#include "yspng.h"
+#include "yspngenc.h"
+
+const int carrierA = 1;
+const int carrierB = 2;
+const int bmpWidth;
+std::string fileName = "output.txt";
+
+// Initialize highlight color (BLACK PIXELS)
+void init1(int wid, int carrier)
+{
+    file << ";!knitout-2\n";
+    file << ";;Carriers: 1 2 3 4 5 6 7 8 9 10\n\n";
+    file << "; bottom row\n\n";
+    file << "inhook " << carrier << "\n\n";
+    
+    for(int i=wid; i>0; --i) // Tuck left
+    {
+        if (i%2==0)
+        {
+            file << "tuck - f" << i << " " << carrier << "\n";
+        }
+    }
+
+    for(int i=1; i<=wid; ++i) // Tuck right
+    {
+        if (i%2!=0)
+        {
+            file << "tuck + f" << i << " " << carrier << "\n";
+        }
+    }
+
+    for(int i=wid; i>0; --i) // Knit left row
+    {
+        file << "knit - f" << i << " " << carrier << "\n";
+    }
+}
+
+// Initialize background color (WHITE PIXELS)
+void init2(int wid, int carrier)
+{
+    for(int i=wid; i>0; --i) // Knit left row
+    {
+        file << "knit - f" << i << " " << carrier << "\n";
+    }
+
+    for(int i=2; i<=wid; ++i) // Knit right row
+    {
+        file << "knit + f" << i << " " << carrier << "\n";
+    }
+
+    for(int i=wid; i>0; --i) // Knit left row
+    {
+        file << "knit - f" << i << " " << carrier << "\n";
+    }
+}
+
+// Creates pattern from binary map
+void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
+{
+    bool black = true;
+
+    for (int i = 0; i < png.hei; ++i)
+	{
+        // For debugging
+        std::cout << "\n";
+        
+        for (int j = 0; j < width; ++j) // First pass
+        {
+            auto r = img.rgba[(i*width + j) * 4];
+		    auto g = img.rgba[(i*width + j) * 4 + 1];
+		    auto b = img.rgba[(i*width + j) * 4 + 2];
+            int bit = (r+g+b)/3;
+
+            if (black && bit < 100) // knit black pixels A
+            {
+                file << "knit + f" << j+1 << " " << A << "\n";
+            }
+            else if (not black && bit > 100) //knit white pixels B
+            {
+                file << "knit + f" << j+1 << " " << B << "\n";
+            }
+            else if  (black && j == width-1) // miss if not
+            {
+                file << "miss + f" << width << " " << A << "\n";
+            }
+
+            // For debugging
+            if (bit > 100){std::cout << "-";}
+            else          {std::cout << "X";}
+        }
+
+        for (int j = 0; j < width; ++j) // First xfer 
+        {
+            auto r = img.rgba[(i*width + j) * 4];
+		    auto g = img.rgba[(i*width + j) * 4 + 1];
+		    auto b = img.rgba[(i*width + j) * 4 + 2];
+            int bit = (r+g+b)/3;
+
+            if (black && bit < 100) // knit black pixels A
+            {
+                file << "xfer f" << j+1 << " b" << j+1 << "\n";
+            }
+            else if (not black && bit > 100) //knit white pixels B
+            {
+                file << "xfer f" << j+1 << " b" << j+1 << "\n";
+            }
+
+        }
+
+        for (int j = width-1; j >= 0; --j) // Second pass
+        {
+            auto r = img.rgba[(i*width + j) * 4];
+            auto g = img.rgba[(i*width + j) * 4 + 1];
+            auto b = img.rgba[(i*width + j) * 4 + 2];
+            int bit = (r+g+b)/3;
+
+            if (black && bit < 100) // knit black pixels A
+            {
+                file << "knit - b" << j+1 << " " << A << "\n";
+            }
+            else if (not black && bit > 100) //knit white pixels B
+            {
+                file << "knit - b" << j+1 << " " << B << "\n";
+            }
+            else if  (black && j == width-1) // miss if not
+            {
+                file << "miss - b" << width << " " << A << "\n";
+            }
+        }
+
+        for (int j = width-1; j >= 0; --j) // Second xfer
+        {
+            auto r = img.rgba[(i*width + j) * 4];
+            auto g = img.rgba[(i*width + j) * 4 + 1];
+            auto b = img.rgba[(i*width + j) * 4 + 2];
+            int bit = (r+g+b)/3;
+
+            if (black && bit < 100) // knit black pixels A
+            {
+                file << "xfer b" << j+1 << " f" << j+1 << "\n";
+            }
+            else if (not black && bit > 100) //knit white pixels B
+            {
+                file << "xfer b" << j+1 << " f" << j+1 << "\n";
+            }
+        }
+
+        black = not black;
+        // for(pixel in row)
+        // knit black pixel carrier A
+        // miss width
+        // xfer black pixels
+        // change direction
+        // knit black pixel carrier A
+        // miss width
+        // xfer black pixels
+        // 
+        // knit white pixel carrier B
+        // xfer white pixels
+        // change direction
+        // knit white pixels carrier B
+        // xfer white pixels
+        //
+        // knit black pixles carrier A
+        // miss width
+        // xfer black pixels
+        // change direction
+        // knit black pixels carrier A
+        // miss width
+        // xfer black pixels
+        // 
+        // knit white pixels carrer B
+        // xfer white pixles
+        // change direction
+        // knit white pixels carrier B
+        // xfer white pixels
+	}
+}
+
+void clear(int width, int A, int B)
+{
+    for(int i=1; i<=wid; ++i) // Finish A
+    {
+        file << "knit + f" << i << " " << A << "\n";
+    }
+    file << "outhook " << A << "\n";
+
+    for(int i=1; i<=wid; ++i) // Finish B
+    {
+        file << "knit + f" << i << " " << B << "\n";
+    }
+    file << "outhook " << B << "\n";
+
+    for(int i=1; i<=wid; ++i) // Clear hooks
+    {
+        file << "drop f" << i << "\n";
+    }
+}
+
+int main()
+{
+    std::ofstream file {fileName};
+
+    FsChangeToProgramDir();
+    YsRawPngDecoder png;
+
+    char imagename[200];
+    std::cout << "Enter bitmap file name: ";
+	std::cin >> imagename;
+	std::cout << imagename << "\n";
+	if (YSOK == png.Decode(imagename))
+	{
+		printf("Wid %d Hei %d\n", png.wid, png.hei);
+	}
+    else
+	{
+		printf("Failed to open file.\n");
+		return 1;
+	}
+
+    int width = png.wid;
+    int length = png.hei;
+
+    init1(width, carrierA);
+    init2(width, carrierB);
+    knitFromBitmap(width, carrierA, carrierB, png);
+    clear(width, carrierA, carrierB);
+
+    std::cout << "Knitout saved to " << fileName;
+}
