@@ -6,8 +6,8 @@
 #include "yspngenc.h"
 
 
-const int carrierA = 1;
-const int carrierB = 2;
+const int carrierA = 3;
+const int carrierB = 6;
 
 std::string fileName = "output.txt";
 std::ofstream file {fileName};
@@ -41,6 +41,17 @@ void init1(int wid, int carrier)
         file << "knit - f" << i << " " << carrier << "\n";
     }
 
+    for(int i=2; i<=wid; ++i) // Knit right row
+    {
+        file << "knit + f" << i << " " << carrier << "\n";
+    }
+
+    file << "releasehook " << carrier<< "\n";
+
+    for(int i=wid; i>0; --i) // Knit left row
+    {
+        file << "knit - f" << i << " " << carrier << "\n";
+    }
     file << "\n";
 }
 
@@ -57,6 +68,8 @@ void init2(int wid, int carrier)
     {
         file << "knit + f" << i << " " << carrier << "\n";
     }
+
+    file << "releasehook " << carrier << "\n";
 
     for(int i=wid; i>0; --i) // Knit left row
     {

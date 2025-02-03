@@ -5,3 +5,4 @@ project(knitoutproject)
 
 add_subdirectory(lib)
 add_executable(knitoutproject MACOSX_BUNDLE knitoutproject.cpp)
+target_link_libraries(knitoutproject lib)

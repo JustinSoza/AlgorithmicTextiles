@@ -1,2 +1,2 @@
-add_library(lib fssimplewindow.h yspng.h yspngenc.h fssimplewindow.cpp yspng.cpp yspngenc.cpp)
+add_library(lib yspngenc.h fssimplewindow.h yspng.h yspng.cpp fssimplewindow.cpp yspngenc.cpp)
 target_include_directories(lib PUBLIC .)

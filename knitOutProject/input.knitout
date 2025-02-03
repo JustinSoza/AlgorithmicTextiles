@@ -109,8 +109,7 @@ knit + f32 3
 knit + f33 3
 knit + f34 3
 knit + f35 3
-releasehook 3
-knit - f35 3
+releasehook 3knit - f35 3
 knit - f34 3
 knit - f33 3
 knit - f32 3
@@ -217,8 +216,7 @@ knit + f32 6
 knit + f33 6
 knit + f34 6
 knit + f35 6
-releasehook 6
-knit - f35 6
+releasehook 6knit - f35 6
 knit - f34 6
 knit - f33 6
 knit - f32 6
