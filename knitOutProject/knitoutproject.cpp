@@ -226,11 +226,18 @@ int main()
     FsChangeToProgramDir();
     YsRawPngDecoder png;
 
-    char imagename[200];
+    char dir[200] = {"../../knitOutProject/"};
+    char input[200];
+    char result[400];
+
     std::cout << "Enter bitmap file name: ";
-	std::cin >> imagename;
-	std::cout << "Loading " << imagename << "...\n";
-	if (YSOK == png.Decode(imagename))
+	std::cin >> input;
+	std::cout << "Loading " << input << "...\n";
+
+    std::strcpy(result, dir);
+    std::strcat(result, input);
+
+	if (YSOK == png.Decode(result))
 	{
 		printf("Wid %d Hei %d\n", png.wid, png.hei);
 	}
