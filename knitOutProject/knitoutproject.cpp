@@ -7,7 +7,7 @@
 
 
 const int carrierA = 3;
-const int carrierB = 6;
+const int carrierB = 5;
 
 std::string fileName = "output.txt";
 std::ofstream file {fileName};
@@ -17,6 +17,7 @@ void init1(int wid, int carrier)
 {
     file << ";!knitout-2\n";
     file << ";;Carriers: 1 2 3 4 5 6 7 8 9 10\n\n";
+    file << ";; Position: Center" << "\n";
     file << "; bottom row\n\n";
     file << "inhook " << carrier << "; Initialize carrier A" << "\n\n";
     
@@ -45,8 +46,7 @@ void init1(int wid, int carrier)
     {
         file << "knit + f" << i << " " << carrier << "\n";
     }
-
-    file << "releasehook " << carrier<< "\n";
+    file << "releasehook " << carrier << "\n";
 
     for(int i=wid; i>0; --i) // Knit left row
     {
@@ -68,7 +68,6 @@ void init2(int wid, int carrier)
     {
         file << "knit + f" << i << " " << carrier << "\n";
     }
-
     file << "releasehook " << carrier << "\n";
 
     for(int i=wid; i>0; --i) // Knit left row
@@ -108,9 +107,27 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
                 file << "miss + f" << width << " " << A << "\n";
             }
 
+
             // For debugging
             if (bit > 100){std::cout << "-";}
             else          {std::cout << "X";}
+        }
+
+        for (int j = 0; j < width; ++j) // First pass
+        {
+            auto r = img.rgba[(i*width + j) * 4];
+		    auto g = img.rgba[(i*width + j) * 4 + 1];
+		    auto b = img.rgba[(i*width + j) * 4 + 2];
+            int bit = (r+g+b)/3;
+
+            if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
+            {
+                file << "tuck + f" << j+1 << " " << A << "\n";
+            }
+            else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
+            {
+                file << "tuck + f" << j+1 << " " << B << "\n";
+            }
         }
 
         for (int j = 0; j < width; ++j) // First xfer 
@@ -151,6 +168,7 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
                 file << "miss - b" << 1 << " " << A << "\n";
             }
         }
+
 
         for (int j = width-1; j >= 0; --j) // Second xfer
         {
@@ -226,10 +244,12 @@ int main()
     FsChangeToProgramDir();
     YsRawPngDecoder png;
 
+    char dir[200] = "../../knitOutProject/";
     char imagename[200];
     std::cout << "Enter bitmap file name: ";
-	std::cin >> imagename;
+	std::cin  >> imagename;
 	std::cout << "Loading " << imagename << "...\n";
+
 	if (YSOK == png.Decode(imagename))
 	{
 		printf("Wid %d Hei %d\n", png.wid, png.hei);
