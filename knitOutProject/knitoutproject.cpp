@@ -6,7 +6,7 @@
 #include "yspngenc.h"
 
 
-const int carrierA = 3;
+const int carrierA = 1;
 const int carrierB = 5;
 
 std::string fileName = "output.txt";
@@ -37,12 +37,12 @@ void init1(int wid, int carrier)
         }
     }
 
-    for(int i=wid; i>0; --i) // Knit left row
+    for(int i=wid; i>1; --i) // Knit left row
     {
         file << "knit - f" << i << " " << carrier << "\n";
     }
 
-    for(int i=2; i<=wid; ++i) // Knit right row
+    for(int i=1; i<=wid; ++i) // Knit right row
     {
         file << "knit + f" << i << " " << carrier << "\n";
     }
@@ -59,12 +59,12 @@ void init1(int wid, int carrier)
 void init2(int wid, int carrier)
 {
     file << "inhook " << carrier << "; Initialize carrier B" << "\n\n";
-    for(int i=wid; i>0; --i) // Knit left row
+    for(int i=wid; i>1; --i) // Knit left row
     {
         file << "knit - f" << i << " " << carrier << "\n";
     }
 
-    for(int i=2; i<=wid; ++i) // Knit right row
+    for(int i=1; i<=wid; ++i) // Knit right row
     {
         file << "knit + f" << i << " " << carrier << "\n";
     }
@@ -81,55 +81,66 @@ void init2(int wid, int carrier)
 void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
 {
     bool black = true;
-
+    file << "; black pixels: " << black << "\n\n";
     for (int i = 0; i < img.hei; ++i)
 	{
         // For debugging
         std::cout << "\n";
-        
+        file << "; First pass [Moving right], tuck color behind\n";
+        // for (int j = 0; j < width; ++j) // First pass TUCKS
+        // {
+        //     auto r = img.rgba[(i*width + j) * 4];
+		//     auto g = img.rgba[(i*width + j) * 4 + 1];
+		//     auto b = img.rgba[(i*width + j) * 4 + 2];
+        //     int bit = (r+g+b)/3;
+
+        //     if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
+        //     {
+        //         file << "tuck + f" << j+1 << " " << A << "\n";
+        //     }
+        //     else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
+        //     {
+        //         file << "tuck + f" << j+1 << " " << B << "\n";
+        //     }
+        // }
+
+        file << "; First pass [Moving right], knit color in front \n";
+        int blackCount = 0;
         for (int j = 0; j < width; ++j) // First pass
         {
             auto r = img.rgba[(i*width + j) * 4];
 		    auto g = img.rgba[(i*width + j) * 4 + 1];
 		    auto b = img.rgba[(i*width + j) * 4 + 2];
             int bit = (r+g+b)/3;
+            if (bit < 100){++blackCount;}
 
             if (black && bit < 100) // knit black pixels A
             {
                 file << "knit + f" << j+1 << " " << A << "\n";
             }
+            else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
+            {
+                file << "tuck + f" << j+1 << " " << A << "\n";
+            }
             else if (!black && bit > 100) //knit white pixels B
             {
                 file << "knit + f" << j+1 << " " << B << "\n";
             }
-            else if  (black && j == width-1) // miss if not
+            else if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
             {
-                file << "miss + f" << width << " " << A << "\n";
+                file << "tuck + f" << j+1 << " " << B << "\n";
             }
-
+            else if  (black && j==width-1) // Check for miss
+            {   
+                if (blackCount > 0){file << "miss + f" << width << " " << A << "\n";}
+            }
 
             // For debugging
             if (bit > 100){std::cout << "-";}
             else          {std::cout << "X";}
         }
 
-        for (int j = 0; j < width; ++j) // First pass
-        {
-            auto r = img.rgba[(i*width + j) * 4];
-		    auto g = img.rgba[(i*width + j) * 4 + 1];
-		    auto b = img.rgba[(i*width + j) * 4 + 2];
-            int bit = (r+g+b)/3;
-
-            if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
-            {
-                file << "tuck + f" << j+1 << " " << A << "\n";
-            }
-            else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
-            {
-                file << "tuck + f" << j+1 << " " << B << "\n";
-            }
-        }
-
+        file << "; Transfer row to back\n";
         for (int j = 0; j < width; ++j) // First xfer 
         {
             auto r = img.rgba[(i*width + j) * 4];
@@ -148,28 +159,58 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
 
         }
 
+        // file << "; Second pass [Moving left], tuck color in back\n";
+        // for (int j = width-1; j >= 0; --j) // Second pass TUCKS
+        // {
+        //     auto r = img.rgba[(i*width + j) * 4];
+        //     auto g = img.rgba[(i*width + j) * 4 + 1];
+        //     auto b = img.rgba[(i*width + j) * 4 + 2];
+        //     int bit = (r+g+b)/3;
+
+        //     if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
+        //     {
+        //         file << "tuck - b" << j+1 << " " << A << "\n";
+        //     }
+        //     else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
+        //     {
+        //         file << "tuck - b" << j+1 << " " << B << "\n";
+        //     }
+        // }
+
+        file << "; Second pass [Moving left], knit color in front\n";
+        blackCount = 0;
         for (int j = width-1; j >= 0; --j) // Second pass
         {
             auto r = img.rgba[(i*width + j) * 4];
             auto g = img.rgba[(i*width + j) * 4 + 1];
             auto b = img.rgba[(i*width + j) * 4 + 2];
             int bit = (r+g+b)/3;
+            if (bit < 100){++blackCount;}
 
             if (black && bit < 100) // knit black pixels A
             {
                 file << "knit - b" << j+1 << " " << A << "\n";
             }
+            else if (black && bit > 100 && (j+i)%6==0) //knit white pixels B
+            {
+                file << "tuck - b" << j+1 << " " << A << "\n";
+            }
             else if (!black && bit > 100) //knit white pixels B
             {
                 file << "knit - b" << j+1 << " " << B << "\n";
             }
-            else if  (black && j == 0) // miss if not
+            else if (!black && bit < 100 && (j+i)%6==0) // knit black pixels A
             {
-                file << "miss - b" << 1 << " " << A << "\n";
+                file << "tuck - b" << j+1 << " " << B << "\n";
+            }
+            else if  (black && j==0) // Check for miss
+            {   
+                if (blackCount > 0){file << "miss - b" << 1 << " " << A << "\n";}
             }
         }
 
 
+        file << "; Transfer row back to front\n";
         for (int j = width-1; j >= 0; --j) // Second xfer
         {
             auto r = img.rgba[(i*width + j) * 4];
