@@ -5,7 +5,6 @@
 #include "yspng.h"
 #include "yspngenc.h"
 
-
 const int carrierA = 3;
 const int carrierB = 4;
 
