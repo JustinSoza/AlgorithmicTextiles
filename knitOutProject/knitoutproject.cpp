@@ -6,8 +6,8 @@
 #include "yspngenc.h"
 
 
-const int carrierA = 1;
-const int carrierB = 5;
+const int carrierA = 3;
+const int carrierB = 4;
 
 std::string fileName = "output.txt";
 std::ofstream file {fileName};
@@ -19,6 +19,8 @@ void init1(int wid, int carrier)
     file << ";;Carriers: 1 2 3 4 5 6 7 8 9 10\n\n";
     file << ";; Position: Center" << "\n";
     file << "; bottom row\n\n";
+    file << "; Carrier 3: Black\n";
+    file << "; Carrier 4: White\n\n";
     file << "inhook " << carrier << "; Initialize carrier A" << "\n\n";
     
     for(int i=wid; i>0; --i) // Tuck left
