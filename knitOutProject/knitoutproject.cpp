@@ -5,10 +5,15 @@
 #include "yspng.h"
 #include "yspngenc.h"
 
+// Carrier A (Black Pixels), Carrier B (White Pixels)
 const int carrierA = 3;
 const int carrierB = 4;
 
-std::string fileName = "output.txt";
+// Image folder directory
+char folderDir[200] = "../../knitOutProject/images/";
+
+// Output file
+std::string fileName = "output.k";
 std::ofstream file {fileName};
 
 // Initialize highlight color (BLACK PIXELS)
@@ -261,23 +266,46 @@ void knitFromBitmap(int width, int A, int B, YsRawPngDecoder& img)
 	}
 }
 
-void clear(int width, int A, int B)
+void bindoff(int width, int A, int B)
 {
-    for(int i=1; i<=width; ++i) // Finish A
-    {
-        file << "knit + f" << i << " " << A << "\n";
-    }
+    for(int i=1; i<=width; ++i){file << "knit + f" << i << " " << A << "\n";}
+    for(int i=width; i>0; --i){file << "knit - f" << i << " " << A << "\n";}
+
     file << "outhook " << A << "\n";
 
-    for(int i=1; i<=width; ++i) // Finish B
-    {
-        file << "knit + f" << i << " " << B << "\n";
-    }
-    file << "outhook " << B << "\n";
+    // Transfer back to front, then knit
+    for(int i=1; i<=width; ++i){file << "xfer b" << i << " f" << i << "\n";}
+    for(int i=1; i<=width; ++i){file << "knit + f" << i << " " << B << "\n";}
+    for(int i=width; i>0; --i){file << "knit - f" << i << " " << B << "\n";}
 
+    file << "\n; Bindoff\n";
+    for(int i=1; i<=width-1; ++i)
+    {
+        file << "xfer f" << i << " b" << i << "\n";
+        file << "rack 1.0\n";
+        file << "xfer b" << i << " f" << i+1 << "\n";
+        file << "rack 0.25\n";
+        
+        if(i%2==0){file << "tuck + b" << i << " " << B << "\n";}
+        file << "knit + f" << i+1 << " " << B << "\n";
+        if(i<width-1){file << "miss + f" << i+2 << " " << B << "\n";}
+
+        file << "rack 0.0\n";
+    }
+
+    file << "\n; Overhang\n";
+    file << "knit - f" << width << " " << B << "\n";
+    file << "knit + f" << width << " " << B << "\n";
+    file << "knit - f" << width << " " << B << "\n";
+    file << "knit + f" << width << " " << B << "\n";
+    file << "outhook " << B << "\n";
+    file << "rack 0.25\n";
+
+    file << "\n ; Drop hooks\n";
     for(int i=1; i<=width; ++i) // Clear hooks
     {
         file << "drop f" << i << "\n";
+        file << "drop b" << i << "\n";
     }
 }
 
@@ -286,13 +314,17 @@ int main()
     FsChangeToProgramDir();
     YsRawPngDecoder png;
 
-    char dir[200] = "../../knitOutProject/";
-    char imagename[200];
-    std::cout << "Enter bitmap file name: ";
-	std::cin  >> imagename;
-	std::cout << "Loading " << imagename << "...\n";
+    char fileName[200];
+    char imageDir[400];
 
-	if (YSOK == png.Decode(imagename))
+    std::cout << "In directory: " << folderDir << "\n";
+    std::cout << "Enter image file name: ";
+	std::cin  >> fileName;
+	std::cout << "Loading " << fileName << "...\n";
+
+    std::strcpy(imageDir, folderDir);
+    std::strcat(imageDir, fileName);
+	if (YSOK == png.Decode(imageDir))
 	{
 		printf("Wid %d Hei %d\n", png.wid, png.hei);
 	}
@@ -309,7 +341,8 @@ int main()
     init1(width, carrierA);
     init2(width, carrierB);
     knitFromBitmap(width, carrierA, carrierB, png);
-    clear(width, carrierA, carrierB);
+    bindoff(width, carrierA, carrierB);
 
     std::cout << "\n\nKnitout saved to " << fileName;
+    return 0;
 }
